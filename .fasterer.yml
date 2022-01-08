@@ -1,0 +1,6 @@
+exclude_paths:
+  - 'vendor/**/*.rb'
+  - 'spec/support/*.rb'
+  - 'db/migrate/*.rb'
+  - 'db/schema.rb'
+  - 'config/puma.rb'

@@ -1,0 +1,96 @@
+---
+detectors:
+  NestedIterators:
+    enabled: true
+    exclude: []
+    max_allowed_nesting: 3
+    ignore_iterators:
+      - tap
+  DuplicateMethodCall:
+    max_calls: 2
+  TooManyStatements:
+    enabled: true
+    exclude:
+      - initialize
+    max_statements: 10
+  RepeatedConditional:
+    max_ifs: 3
+
+exclude_paths:
+  - 'db/data'
+  - 'db/migrate'
+  - 'lib/paperclip'
+  - 'spec/paperclip'
+  - 'node_modules'
+  - 'cache'
+  - 'vendor'
+directories:
+  "config":
+    IrresponsibleModule:
+      enabled: false
+  "app/controllers":
+    IrresponsibleModule:
+      enabled: false
+    NestedIterators:
+      max_allowed_nesting: 2
+    UnusedPrivateMethod:
+      enabled: false
+    InstanceVariableAssumption:
+      enabled: false
+    UncommunicativeVariableName:
+      enabled: false
+  "app/channels/":
+    IrresponsibleModule:
+      enabled: false
+  "app/models":
+    IrresponsibleModule:
+      enabled: false
+    InstanceVariableAssumption:
+      enabled: false
+  "app/models/cms":
+    IrresponsibleModule:
+      enabled: false
+    ManualDispatch:
+      enabled: false
+  "app/jobs":
+    IrresponsibleModule:
+      enabled: false
+    UtilityFunction:
+      enabled: false
+  "app/presenters":
+    IrresponsibleModule:
+      enabled: false
+  "app/subscribers":
+    UtilityFunction:
+      enabled: false
+  "app/services":
+    IrresponsibleModule:
+      enabled: false
+    FeatureEnvy:
+      enabled: false
+  "app/serializers":
+    IrresponsibleModule:
+      enabled: false
+  "app/helpers":
+    IrresponsibleModule:
+      enabled: false
+    UtilityFunction:
+      enabled: false
+    FeatureEnvy:
+      enabled: false
+  "app/mailers":
+    BooleanParameter:
+      enabled: false
+    ControlParameter:
+      enabled: false
+    IrresponsibleModule:
+      enabled: false
+    InstanceVariableAssumption:
+      enabled: false
+    UtilityFunction:
+      enabled: false
+  "test/":
+    IrresponsibleModule:
+      enabled: false
+    UtilityFunction:
+      enabled: false
