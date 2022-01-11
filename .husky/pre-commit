@@ -1,9 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-bundle exec rubocop
-bundle exec reek
-bundle exec haml-lint --exclude=vendor/**/*.haml
-bundle exec fasterer
-
 rails test
+yarn linters
