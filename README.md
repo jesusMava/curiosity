@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Curiosity es un sitio web el cual se compone de una serie de cards las cuales como su nombre lo indica son datos curiosos para aquellas personas que les gusta estar siempre aprendiendo algo nuevo o interesante. 
 
-Things you may want to cover:
+De que esta compuesto Curiosity?
+Se tiene planeado que para este proyecto se implemente las siguientes acciones:
+* Login
+* Permisos de Usuario
+* PDFs
+* Filtros por categoria
+* Imágenes
+* Acciones sobre el post algo así como likes pero en vez de likes serán las acciones de Verdad y Mentira
+* Comentarios
+
+# Setup
 
 * Ruby version
+    * 3.1.0
 
-* System dependencies
+* Rails version
+    * 7.0.1
 
-* Configuration
-
-* Database creation
-
-* Database initialization
+* Database(PSQL)
+    * db:create, db:migrate
 
 * How to run the test suite
+    * rails test
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Configuration
+    * npm install
