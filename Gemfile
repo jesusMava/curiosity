@@ -7,6 +7,7 @@ ruby '3.1.0'
 
 gem 'bootsnap', require: false
 gem "bulma-rails", "~> 0.9.2"
+gem 'devise'
 gem 'fasterer', '~> 0.1.9', require: false
 gem 'haml-lint', require: false
 gem 'haml-rails'
@@ -28,6 +29,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 end
 
 group :development do

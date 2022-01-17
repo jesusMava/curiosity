@@ -1,0 +1,39 @@
+%nav.navbar.is-primary{ 'aria-label' => 'main navigation',
+  :role => 'navigation' }
+  .navbar-brand.image.is-64x64
+    %a{ href: '/' }
+      = image_tag('curiosity.jpg', class: 'is-rounded', size: '50px')
+  %a.navbar-burger{ 'aria-expanded' => 'false', 'aria-label' => 'menu',
+    'data-target' => 'navbar-basic-example', role: 'button' }
+    %span{ 'aria-hidden' => 'true' }
+    %span{ 'aria-hidden' => 'true' }
+    %span{ 'aria-hidden' => 'true' }
+
+    .navbar-menu#navbar-basic-example
+      .navbar-start
+        %a.navbar-item
+          Home
+
+    %a.navbar-item
+      Documentation
+
+    .navbar-item.has-dropdown.is-hoverable
+      %a.navbar-link
+        More
+      .navbar-dropdown
+        %a.navbar-item
+          About
+        %a.navbar-item
+          Jobs
+        %a.navbar-item
+          Contact
+        %hr.navbar-divider/
+        %a.navbar-item
+          Report an issue
+
+  .navbar-end
+    .navbar-item
+      .buttons
+        %a.button.is-primary{ href: new_user_registration_path }
+          Registrate
+        = user_is_login

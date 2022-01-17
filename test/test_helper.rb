@@ -3,6 +3,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require 'faker'
+require 'support/factory_bot'
 
 module ActiveSupport
   class TestCase
