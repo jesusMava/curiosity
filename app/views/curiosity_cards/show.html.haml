@@ -1,0 +1,9 @@
+%h2 Show
+= @curiosity.title
+= @curiosity.content
+%br
+= link_to 'Edit', edit_curiosity_card_path(@curiosity)
+%br
+= link_to 'Destroy', curiosity_card_path(@curiosity),
+  data: { turbo_method: :delete,
+    turbo_confirm: "Are you sure?" }

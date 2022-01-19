@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'curiosity_cards#index'
+
   devise_for :users
-  root 'main#index'
+  resources :curiosity_cards
 end

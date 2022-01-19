@@ -1,0 +1,14 @@
+= form_with model: curiosity do |f|
+  = f.label :title
+  = f.text_field :title
+  - @curiosity.errors.full_messages_for(:title).each do |msg|
+    = msg
+  %br
+  = f.label :content
+  = f.text_field :content
+  - @curiosity.errors.full_messages_for(:content).each do |msg|
+    = msg
+  %br
+  = f.file_field :images, multiple: true
+  %br
+  = f.submit
