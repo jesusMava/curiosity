@@ -24,12 +24,12 @@
             .media-content
               .content
                 %nav.level.is-mobile
-                  %a.level-item{ "aria-label" => "reply" }
+                  %a.level-item{ "aria-label" => "true" }
                     %span.icon.is-small
-                      %i.fas.fa-reply{ "aria-hidden" => "true" }
-                  %a.level-item{ "aria-label" => "retweet" }
+                      %i.fas.fa-check{ "aria-hidden" => "true" }
+                  %a.level-item{ "aria-label" => "false" }
                     %span.icon.is-small
-                      %i.fas.fa-retweet{ "aria-hidden" => "true" }
+                      %i.fas.fa-times{ "aria-hidden" => "true" }
                     = link_to curiosity_card_path(curiosity), class: 'level-item' do
                       %span.icon.is-small
                         %i.fas.fa-comment{ "aria-hidden" => "true" }

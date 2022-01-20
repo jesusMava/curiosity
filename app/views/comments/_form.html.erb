@@ -1,0 +1,10 @@
+<%= form_with model: [ curiosity, comment ] do |form| %>
+  <p>
+    <%= form.label :message %><br>
+    <%= form.text_field :message %>
+  </p>
+  <p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

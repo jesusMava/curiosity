@@ -1,7 +1,8 @@
 class CuriosityCardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  # skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_curiosity, only: [:show, :edit]
-  before_action :update_or_delete_curiosity, only: [:update, :destroy]
+  before_action :find_curiosity_scope_by_current_user, only: [:update, :destroy]
 
   def index
     @curiosities = CuriosityCard.all
@@ -45,7 +46,7 @@ class CuriosityCardsController < ApplicationController
     @curiosity = CuriosityCard.find(params[:id])
   end
 
-  def update_or_delete_curiosity
+  def find_curiosity_scope_by_current_user
     @curiosity = current_user.curiosity_cards.find_by(id: params[:id])
 
     if @curiosity.nil?

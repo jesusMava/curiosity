@@ -7,3 +7,12 @@
 = link_to 'Destroy', curiosity_card_path(@curiosity),
   data: { turbo_method: :delete,
     turbo_confirm: "Are you sure?" }
+
+
+%h2 Add New Comments
+= render 'comments/form', curiosity: @curiosity,
+  comment: Comment.new(curiosity_card_id: @curiosity.id)
+<hr class='has-background-black'/>
+
+%h2 Comments
+= render @curiosity.comments
