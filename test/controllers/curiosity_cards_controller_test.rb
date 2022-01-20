@@ -76,7 +76,7 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_redirected_to root_path
-    assert_equal 'Unable to do this acctions', flash[:error]
+    assert_equal 'Unable to do this actions', flash[:error]
   end
 
   test 'should not update a curiosity when there is not user' do

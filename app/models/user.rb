@@ -7,5 +7,4 @@ class User < ApplicationRecord
   has_many :curiosity_cards, dependent: :destroy
 
   has_many :comments, dependent: :destroy
-  has_many :curiosity_card, through: :comments
 end

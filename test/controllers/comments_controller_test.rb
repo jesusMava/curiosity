@@ -41,6 +41,20 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(curiosity)
   end
 
+  test 'should render edit by model validates' do
+    user = create(:user)
+    curiosity = create(:curiosity_card)
+    comment = create(:comment, curiosity_card: curiosity, user: )
+
+    sign_in user
+
+    patch curiosity_card_comment_path(curiosity, comment), params: {
+      comment: { message: 'my' }
+    }
+
+    assert_response :unprocessable_entity
+  end
+
   test 'user should not be able to edit other comments' do
     user = create(:user)
     curiosity = create(:curiosity_card)
@@ -53,7 +67,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_redirected_to curiosity_card_path(curiosity)
-    assert_equal 'Unable to do this acctions', flash[:error]
+    assert_equal 'Unable to do this actions', flash[:error]
   end
 
   test 'user should not be able to destroy other comments' do
@@ -66,6 +80,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     delete curiosity_card_comment_path(curiosity, comment.id)
 
     assert_redirected_to curiosity_card_path(curiosity)
-    assert_equal 'Unable to do this acctions', flash[:error]
+    assert_equal 'Unable to do this actions', flash[:error]
   end
 end

@@ -17,9 +17,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment&.update(comment_params)
-
-    redirect_to curiosity_card_path(@curiosity)
+    if @comment.update(comment_params)
+      redirect_to curiosity_card_path(@curiosity)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -37,7 +39,10 @@ class CommentsController < ApplicationController
   def find_by_comment_and_curiosity_by_user_scope
     @comment = current_user.comments.find_by(id: params[:id])
     find_curiosity_card
-    flash[:error] = 'Unable to do this acctions' unless @comment
+    unless @comment
+      flash[:error] = 'Unable to do this actions'
+      redirect_to curiosity_card_path(@curiosity)
+    end
   end
 
   def find_curiosity_card

@@ -1,6 +1,5 @@
 class CuriosityCardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  # skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_curiosity, only: [:show, :edit]
   before_action :find_curiosity_scope_by_current_user, only: [:update, :destroy]
 
@@ -53,7 +52,7 @@ class CuriosityCardsController < ApplicationController
     @curiosity = current_user.curiosity_cards.find_by(id: params[:id])
 
     unless @curiosity
-      flash[:error] = 'Unable to do this acctions'
+      flash[:error] = 'Unable to do this actions'
       redirect_to root_path, status: :see_other
     end
   end
