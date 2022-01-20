@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_by_comment_and_curiosity_by_user_scope, only: [:update, :destroy]
+  before_action :find_comment_and_curiosity_by_user, only: [:update, :destroy]
   before_action :find_curiosity_card, only: [:edit, :create]
 
   def create
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:message).merge(user_id: current_user.id)
   end
 
-  def find_by_comment_and_curiosity_by_user_scope
+  def find_comment_and_curiosity_by_user
     @comment = current_user.comments.find_by(id: params[:id])
     find_curiosity_card
     unless @comment

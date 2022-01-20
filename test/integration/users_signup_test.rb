@@ -3,6 +3,7 @@ require "test_helper"
 class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'sign up' do
     get new_user_registration_path
+
     assert_select 'label', 'Email'
     assert_select 'label', 'Password'
     assert_select 'label', 'Password confirmation'
@@ -12,6 +13,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "invalid signup information" do
     get new_user_registration_path
+
     assert_no_difference 'User.count' do
       post user_session_path, params: {
         user: {
@@ -38,6 +40,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         }
       }
     end
+
     follow_redirect!
     assert_equal 'Welcome! You have signed up successfully.', flash[:notice]
   end
@@ -52,6 +55,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         password: user.password
       }
     }
+
     follow_redirect!
     assert_equal 'Signed in successfully.', flash[:notice]
   end
