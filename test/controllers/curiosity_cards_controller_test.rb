@@ -31,7 +31,7 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test 'should update' do
+  test 'should edit a curiosity' do
     user = create(:user)
     curiosity = create(:curiosity_card, user:)
     sign_in user
@@ -47,7 +47,23 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(CuriosityCard.last)
   end
 
-  test 'should not update other post' do
+  test 'should render the form with errors' do
+    user = create(:user)
+    curiosity = create(:curiosity_card, user:)
+    sign_in user
+
+    patch curiosity_card_path(curiosity), params: {
+      curiosity_card:
+      {
+        title: 'my',
+        content: 'the'
+      }
+    }
+
+    assert_response :unprocessable_entity
+  end
+
+  test 'should not edit other post' do
     curiosity = create(:curiosity_card)
     sign_in create(:user)
 

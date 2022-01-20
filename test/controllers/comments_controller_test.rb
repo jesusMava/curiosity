@@ -10,6 +10,15 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(curiosity)
   end
 
+  test 'should redirect to edit a comment' do
+    sign_in create(:user)
+    curiosity = create(:curiosity_card)
+    post curiosity_card_comments_path(curiosity), params: {
+      comment: { message: 'my' }
+    }
+    assert_response :unprocessable_entity
+  end
+
   test 'should not be able to create a comment without login' do
     curiosity = create(:curiosity_card)
     post curiosity_card_comments_path(curiosity), params: {

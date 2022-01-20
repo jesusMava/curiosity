@@ -4,8 +4,12 @@ class CommentsController < ApplicationController
   before_action :find_curiosity_card, only: [:edit, :create]
 
   def create
-    @comment = @curiosity.comments.create(comment_params)
-    redirect_to @curiosity
+    @comment = @curiosity.comments.new(comment_params)
+    if @comment.save
+      redirect_to @curiosity
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def edit

@@ -27,8 +27,11 @@ class CuriosityCardsController < ApplicationController
   def edit; end
 
   def update
-    @curiosity.update(curiosity_cards_params)
-    redirect_to @curiosity
+    if @curiosity.update(curiosity_cards_params)
+      redirect_to @curiosity
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy

@@ -5,7 +5,7 @@
     = msg
   %br
   = f.label :content
-  = f.text_field :content
+  = f.text_area :content
   - @curiosity.errors.full_messages_for(:content).each do |msg|
     = msg
   %br
