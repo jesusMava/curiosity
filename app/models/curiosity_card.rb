@@ -8,4 +8,6 @@ class CuriosityCard < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :users, through: :comments
+
+  enum action: { fake: 0, real: 1 }
 end

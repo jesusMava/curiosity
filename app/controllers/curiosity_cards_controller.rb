@@ -52,7 +52,7 @@ class CuriosityCardsController < ApplicationController
   def find_curiosity_scope_by_current_user
     @curiosity = current_user.curiosity_cards.find_by(id: params[:id])
 
-    if @curiosity.nil?
+    unless @curiosity
       flash[:error] = 'Unable to do this acctions'
       redirect_to root_path, status: :see_other
     end
