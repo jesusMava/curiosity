@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_164746) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "message"
+    t.string "message", null: false
     t.bigint "user_id", null: false
     t.bigint "curiosity_card_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2022_01_20_164746) do
   end
 
   create_table "curiosity_cards", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
+    t.string "title", null: false
+    t.string "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"

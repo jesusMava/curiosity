@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment&.destroy
+    @comment.destroy
 
     redirect_to curiosity_card_path(@curiosity), status: :see_other
   end

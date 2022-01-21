@@ -11,7 +11,7 @@
         <div class="card-image">
           <figure class="image is-16by9">
             <% if curiosity.images.attached? %>
-              <%= image_tag(url_for(curiosity.images[0]) ) %>
+              <%= image_tag curiosity.images[0].variant(:thumb) %>
             <% else %>
               <img alt="default image" src="https://bulma.io/images/placeholders/1280x960.png"/>
             <% end %>

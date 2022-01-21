@@ -9,6 +9,8 @@
   - @curiosity.errors.full_messages_for(:content).each do |msg|
     = msg
   %br
-  = f.file_field :images, multiple: true
+  = f.file_field :images, multiple: true, include_hidden: false
+  - @curiosity.errors.full_messages_for(:images).each do |msg|
+    = msg
   %br
   = f.submit
