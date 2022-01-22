@@ -1,0 +1,31 @@
+<h2 class='title is-2'><%= @curiosity.title %></h2>
+<div class="columns">
+  <div class="column">
+    <% @curiosity.images.each do |image| %> 
+      <%= image_tag(url_for(image), width: "650", height: "450") %>
+    <% end %>
+    <%= @curiosity.content %>
+    </br>
+    <div class="column is-4 is-offset-8">
+      <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
+        class: 'button is-primary is-outlined' %>
+
+      <%= link_to 'Destroy', curiosity_card_path(@curiosity),
+        class: 'button is-danger is-outlined', data: {
+          turbo_method: :delete,
+          turbo_confirm: 'Are you sure?'}
+        %>
+    </div>
+  </div>
+
+  <div class="column">
+    <h2 class='title is-4'>Add New Comments</h2>
+    <%= render 'comments/form', curiosity: @curiosity,
+      comment: Comment.new(curiosity_card_id: @curiosity.id)
+    %>
+
+    <hr class='has-background-black'/>
+    <%= render @curiosity.comments %>
+  </div>
+</div>
+

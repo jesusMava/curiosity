@@ -3,8 +3,8 @@ require: rubocop-rails
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 2.6
-  TargetRailsVersion: 5.2
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7.0
   Exclude:
     - db/**/*
     - config/**/*
@@ -80,13 +80,6 @@ Style/RegexpLiteral:
 
 Style/NumericPredicate:
   Enabled: false
-
-# NOTE: Do not add cops below this line. Only change Relaxed.Ruby.Style settings
-# and enable things is disables. This is to make upgrading between versions
-# easier.
-
-# Relaxed.Ruby.Style
-## Version 2.0
 
 Style/Alias:
   Enabled: false

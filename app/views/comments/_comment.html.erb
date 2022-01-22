@@ -1,0 +1,15 @@
+<p>
+  <strong> User:</strong>
+  <%= comment.user.email %>
+</p>
+<p>
+  <strong>Comment:</strong>
+  <%= comment.message %>
+</p>
+<%= link_to "Edit", edit_curiosity_card_comment_path(@curiosity, comment.id), class: 'button is-primary is-rounded'%>
+<%= link_to "Destroy", curiosity_card_comment_path(@curiosity, comment.id), class: 'button is-danger is-rounded',
+  data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %>
+<hr class='has-background-grey-light'/>

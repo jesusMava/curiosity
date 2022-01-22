@@ -1,0 +1,11 @@
+<%= form_with model: [ curiosity, comment ], html: {
+  data: { turbo: false } } do |form| %>
+  <div class='content'>
+    <%= form.label 'Comment:', class: 'label' %>
+    <%= form.text_field :message, class: 'input' %>
+    <% comment.errors.full_messages_for(:message).each do |msg| %>
+      <%= msg %>
+    <% end %>
+  </div>
+  <%= form.submit class: 'button is-focused'%>
+<% end %>
