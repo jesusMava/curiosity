@@ -7,12 +7,12 @@ ruby '3.1.0'
 
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
-gem "bulma-rails", "~> 0.9.2"
+gem 'bulma-rails', '~> 0.9.2'
 gem 'devise'
 gem 'fasterer', '~> 0.1.9', require: false
 gem 'haml-lint', require: false
 gem 'haml-rails'
-gem "image_processing", ">= 1.2"
+gem 'image_processing', '>= 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'mini_magick'

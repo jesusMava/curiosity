@@ -31,8 +31,9 @@ class CuriosityCardTest < ActiveSupport::TestCase
     should validate_content_type_of(:images).rejecting('text/plain', 'text/xml')
   end
 
-  # This test doesn't work. The gem is broken
-  # context 'should access only images' do
-  #   should validate_content_type_of(:images).rejecting('image/jpg', 'image/jpeg', 'image/png')
-  # end
+  # Active storage
+  # DEPRECATION WARNING: image/jpg is not a valid content type,
+  context 'should access only images' do
+    should validate_content_type_of(:images).rejecting('image/jpg', 'image/jpeg', 'image/png')
+  end
 end

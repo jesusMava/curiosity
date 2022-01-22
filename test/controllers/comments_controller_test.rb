@@ -12,7 +12,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(curiosity)
   end
 
-  test 'should redirect to edit a comment' do
+  test 'should response with unprocessable_entity' do
     sign_in create(:user)
     curiosity = create(:curiosity_card)
 
@@ -46,7 +46,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(curiosity)
   end
 
-  test 'should render edit by model validates' do
+  test 'should response unprocessable_entity' do
     user = create(:user)
     curiosity = create(:curiosity_card)
     comment = create(:comment, curiosity_card: curiosity, user: )
