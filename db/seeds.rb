@@ -10,3 +10,11 @@ user = User.create(email: 'test@test.com', password: '123456' )
                        content: "this is my curiosity No.#{el}",
                        user_id: User.first.id)
 end
+
+CuriosityCard.create(title: 'Prueba de embarazo en el antiguo Egipto',
+                     content: "Para saber si una mujer estaba embarazada"\
+                     " debía orinar en dos bolsitas: una contenía cebada y "\
+                     "la otra trigo, si germinaba primero la cebada "\
+                     "entonces sería un niño, por el contrarío brotaba primero"\
+                     "el trigo sería niña"
+                     user_id: User.first.id)

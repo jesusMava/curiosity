@@ -27,7 +27,10 @@
           </div>
           <div class="content">
             <span>
-              <%= curiosity.content %>
+              <%= curiosity.content.truncate(100)%>
+              <% if curiosity.content.size >= 100 %>
+                <%= link_to 'see more', curiosity_card_path(curiosity)%>
+              <% end %>
             </span>
           </div>
           <article class="media">
@@ -57,4 +60,10 @@
       </div>
     </div>
   <% end %>
+</div>
+<hr class='has-background-black'/>
+<div class="row colums is-mobile">
+  <div class="column is-three-fifths is-offset-one-fifth">
+    <%= paginate(@curiosities) %>
+  </div>
 </div>

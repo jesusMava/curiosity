@@ -10,11 +10,10 @@ gem 'bootsnap', require: false
 gem 'bulma-rails', '~> 0.9.2'
 gem 'devise'
 gem 'fasterer', '~> 0.1.9', require: false
-gem 'haml-lint', require: false
-gem 'haml-rails'
 gem 'image_processing', '>= 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
