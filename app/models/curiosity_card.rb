@@ -13,4 +13,6 @@ class CuriosityCard < ApplicationRecord
   has_many :users, through: :comments
 
   enum action: { fake: 0, real: 1 }
+
+  scope :order_curiosity_by_desc, -> { order('created_at Desc') }
 end

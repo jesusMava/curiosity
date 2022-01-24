@@ -4,7 +4,7 @@ class CuriosityCardsController < ApplicationController
   before_action :find_curiosity_scope_by_current_user, only: [:update, :destroy]
 
   def index
-    @curiosities = CuriosityCard.order('created_at DESC').page(params[:page]).per(12)
+    @curiosities = CuriosityCard.order_curiosity_by_desc.page(params[:page]).per(12)
   end
 
   def show; end
