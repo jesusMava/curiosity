@@ -207,7 +207,11 @@ GEM
     parser (3.1.0.0)
       ast (~> 2.4.1)
     path_expander (1.1.0)
+    pdf-core (0.9.0)
     pg (1.2.3)
+    prawn (2.4.0)
+      pdf-core (~> 0.9.0)
+      ttfunk (~> 1.7)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -322,6 +326,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     timeout (0.2.0)
+    ttfunk (1.7.0)
     tty-which (0.4.2)
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
@@ -371,6 +376,7 @@ DEPENDENCIES
   kaminari
   mini_magick
   pg (~> 1.1)
+  prawn
   puma (~> 5.0)
   rails (~> 7.0.1)
   redis (~> 4.0)
