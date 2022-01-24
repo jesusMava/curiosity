@@ -7,7 +7,18 @@ class CuriosityCardsController < ApplicationController
     @curiosities = CuriosityCard.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.pdf do
+        pdf = ExportPdf.new(@curiosity)
+        send_data pdf.render,
+                  filename: "curiosity_#{@curiosity.title}.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
+    end
+  end
 
   def new
     @curiosity = CuriosityCard.new
