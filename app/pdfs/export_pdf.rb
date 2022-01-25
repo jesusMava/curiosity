@@ -7,6 +7,10 @@ class ExportPdf < Prawn::Document
     content
   end
 
+  private
+
+  attr_reader :curiosity
+
   def head_curiosity
     text curiosity.title.upcase, size: 20, color: "68D3FE", align: :center
   end
@@ -21,8 +25,4 @@ class ExportPdf < Prawn::Document
   def content
     text_box curiosity.content, at: [270, 690]
   end
-
-  private
-
-  attr_reader :curiosity
 end
