@@ -14,5 +14,5 @@ class CuriosityCard < ApplicationRecord
 
   enum action: { fake: 0, real: 1 }
 
-  scope :order_curiosity_by_desc, -> { order('created_at Desc') }
+  scope :order_by_recents, -> { order('created_at DESC') }
 end
