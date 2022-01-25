@@ -6,16 +6,21 @@
     <% end %>
     <%= @curiosity.content %>
     </br>
-    <div class="column is-4 is-offset-8">
-      <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
-        class: 'button is-primary is-outlined' %>
-
-      <%= link_to 'Destroy', curiosity_card_path(@curiosity),
-        class: 'button is-danger is-outlined', data: {
-          turbo_method: :delete,
-          turbo_confirm: 'Are you sure?'}
-        %>
-    </div>
+    <% if current_user %>
+      <div class="column is-4 is-offset-8">
+        <% if policy(@curiosity).edit? %>
+          <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
+            class: 'button is-primary is-outlined' %>
+        <% end %>
+        <% if policy(@curiosity).destroy? %>
+          <%= link_to 'Destroy', curiosity_card_path(@curiosity),
+            class: 'button is-danger is-outlined', data: {
+              turbo_method: :delete,
+              turbo_confirm: 'Are you sure?'}
+            %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="column">

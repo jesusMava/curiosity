@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @curiosity.comments.new(comment_params)
+    authorize @comment
+
     if @comment.save
       redirect_to @curiosity
     else
@@ -14,6 +16,7 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    authorize @comment
   end
 
   def update
@@ -37,11 +40,14 @@ class CommentsController < ApplicationController
   end
 
   def find_comment_and_curiosity_by_user
-    @comment = current_user.comments.find_by(id: params[:id])
+    @comment = Comment.find_by(id: params[:id])
     find_curiosity_card
+
+    authorize @comment
+
     unless @comment
       flash[:error] = 'Unable to do this actions'
-      redirect_to curiosity_card_path(@curiosity)
+      redirect_to curiosity_card_path(@curiosity), status: :see_other
     end
   end
 

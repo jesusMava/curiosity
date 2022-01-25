@@ -18,6 +18,7 @@ gem 'jbuilder'
 gem 'mini_magick'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
+gem 'pundit'
 gem 'rails', '~> 7.0.1'
 gem 'redis', '~> 4.0'
 gem 'reek', require: false
