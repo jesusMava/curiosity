@@ -36,7 +36,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test 'user should be able to edit their own comments' do
     user = create(:user)
     curiosity = create(:curiosity_card)
-    comment = create(:comment, curiosity_card: curiosity, user: )
+    comment = create(:comment, curiosity_card: curiosity, user: user)
     sign_in user
 
     patch curiosity_card_comment_path(curiosity, comment), params: {
@@ -49,7 +49,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test 'should response unprocessable_entity' do
     user = create(:user)
     curiosity = create(:curiosity_card)
-    comment = create(:comment, curiosity_card: curiosity, user: )
+    comment = create(:comment, curiosity_card: curiosity, user: user)
     sign_in user
 
     patch curiosity_card_comment_path(curiosity, comment), params: {

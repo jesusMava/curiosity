@@ -37,7 +37,7 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should edit a curiosity' do
     user = create(:user)
-    curiosity = create(:curiosity_card, user:)
+    curiosity = create(:curiosity_card, user: user)
     sign_in user
 
     patch curiosity_card_path(curiosity), params: {
@@ -53,7 +53,7 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should render the form with errors' do
     user = create(:user)
-    curiosity = create(:curiosity_card, user:)
+    curiosity = create(:curiosity_card, user: user)
     sign_in user
 
     patch curiosity_card_path(curiosity), params: {
@@ -93,7 +93,7 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should delete' do
     user = create(:user)
-    curiosity = create(:curiosity_card, user:)
+    curiosity = create(:curiosity_card, user: user)
     sign_in user
 
     delete curiosity_card_path(curiosity)
