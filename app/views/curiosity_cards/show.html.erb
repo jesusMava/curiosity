@@ -24,10 +24,6 @@
   </div>
 
   <div class="column">
-    <div class='column is-4 is-offset-8'>
-      <%= link_to 'Download Curiosity to PDF', curiosity_card_path(@curiosity, format: 'pdf'),
-        class: 'button is-danger is-outlined' %>
-    </div>
     <h2 class='title is-4'>Add New Comments</h2>
     <%= render 'comments/form', curiosity: @curiosity,
       comment: Comment.new(curiosity_card_id: @curiosity.id)
