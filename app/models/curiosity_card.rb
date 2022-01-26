@@ -2,7 +2,7 @@
 
 class CuriosityCard < ApplicationRecord
   validates :title, presence: true, length: { minimum: 7 }
-  validates :content, presence: true, length: { in: 10..200 }
+  validates :content, presence: true
   validates :images, content_type: %i[png jpg jpeg]
 
   belongs_to :user
