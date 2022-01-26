@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExportPdf < Prawn::Document
   def initialize(curiosity)
     super()
@@ -12,7 +14,7 @@ class ExportPdf < Prawn::Document
   attr_reader :curiosity
 
   def head_curiosity
-    text curiosity.title.upcase, size: 20, color: "68D3FE", align: :center
+    text curiosity.title.upcase, size: 20, color: '68D3FE', align: :center
   end
 
   def images

@@ -1,8 +1,8 @@
-class CuriosityCardsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_curiosity, only: [:show, :edit, :update, :destroy]
+# frozen_string_literal: true
 
-  after_action :verify_authorized, except: :index
+class CuriosityCardsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_curiosity, only: %i[show edit update destroy]
 
   def index
     @curiosities = CuriosityCard.all
@@ -22,13 +22,11 @@ class CuriosityCardsController < ApplicationController
   end
 
   def new
-    @curiosity = CuriosityCard.new
-    authorize @curiosity
+    @curiosity = authorize(CuriosityCard.new)
   end
 
   def create
-    @curiosity = current_user.curiosity_cards.new(curiosity_cards_params)
-    authorize @curiosity
+    @curiosity = authorize(current_user.curiosity_cards.new(curiosity_cards_params))
 
     if @curiosity.save
       redirect_to @curiosity
@@ -58,12 +56,7 @@ class CuriosityCardsController < ApplicationController
     params.require(:curiosity_card).permit(:title, :content, images: [])
   end
 
-  def find_curiosity
-    @curiosity = CuriosityCard.find(params[:id])
-    authorize @curiosity
-    unless @curiosity
-      flash[:error] = 'No found'
-      redirect_to root_path, status: :see_other
-    end
+  def set_curiosity
+    @curiosity = authorize(CuriosityCard.find(params[:id]))
   end
 end

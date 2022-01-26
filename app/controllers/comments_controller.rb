@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_comment_and_curiosity, except: [:create]
-  before_action :find_curiosity_card, only: [:create]
+  before_action :set_comment, only: %i[edit update destroy]
+  before_action :set_curiosity_card, only: %i[edit create update destroy]
 
   def create
-    @comment = @curiosity.comments.new(comment_params)
-    authorize @comment
+    @comment = authorize(@curiosity.comments.new(comment_params))
 
     if @comment.save
       redirect_to @curiosity
@@ -26,7 +27,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-
     redirect_to curiosity_card_path(@curiosity), status: :see_other
   end
 
@@ -36,19 +36,11 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:message).merge(user_id: current_user.id)
   end
 
-  def find_comment_and_curiosity
-    @comment = Comment.find_by(id: params[:id])
-    find_curiosity_card
-
-    authorize @comment
-
-    unless @comment
-      flash[:error] = 'Unable to do this actions'
-      redirect_to curiosity_card_path(@curiosity), status: :see_other
-    end
+  def set_comment
+    @comment = authorize(current_user.comments.find(params[:id]))
   end
 
-  def find_curiosity_card
+  def set_curiosity_card
     @curiosity = CuriosityCard.find(params[:curiosity_card_id])
   end
 end

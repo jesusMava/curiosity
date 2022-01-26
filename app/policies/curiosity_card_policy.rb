@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CuriosityCardPolicy < ApplicationPolicy
   def show?
     true

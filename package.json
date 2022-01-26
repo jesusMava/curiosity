@@ -12,10 +12,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "rubocop": "bundle exec rubocop",
     "reek": "bundle exec reek",
-    "haml-lint": "bundle exec haml-lint --exclude=vendor/**/*.haml",
     "fasterer": "bundle exec fasterer",
     "linters": "CMD='run-p -l' yarn linters:base",
-    "linters:base": "$CMD rubocop reek haml-lint fasterer"
+    "linters:base": "$CMD rubocop reek fasterer"
   },
   "keywords": [],
   "author": "jesusMava <jesusmacedo7@gmail.com>",

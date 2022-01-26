@@ -5,7 +5,7 @@ module ApplicationHelper
     if current_user
       button_to 'Log out', destroy_user_session_path,
                 method: :delete, class: 'button is-light',
-                data: { turbo: "false" }
+                data: { turbo: 'false' }
     else
       link_to 'Iniciar sesión', new_user_session_path, class: 'button is-info is-outlined'
     end
