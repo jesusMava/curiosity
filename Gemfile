@@ -19,6 +19,7 @@ gem 'mini_magick'
 gem 'pg', '~> 1.1'
 gem 'prawn'
 gem 'puma', '~> 5.0'
+gem 'pundit'
 gem 'rails', '~> 7.0.1'
 gem 'redis', '~> 4.0'
 gem 'reek', require: false

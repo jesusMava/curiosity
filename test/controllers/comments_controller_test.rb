@@ -69,8 +69,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       comment: { message: 'nice' }
     }
 
-    assert_redirected_to curiosity_card_path(curiosity)
-    assert_equal 'Unable to do this actions', flash[:error]
+    assert_redirected_to root_path
+    assert_equal 'Unauthorized action', flash[:error]
   end
 
   test 'user should not be able to destroy other comments' do
@@ -81,7 +81,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     delete curiosity_card_comment_path(curiosity, comment.id)
 
-    assert_redirected_to curiosity_card_path(curiosity)
-    assert_equal 'Unable to do this actions', flash[:error]
+    assert_equal 'Unauthorized action', flash[:error]
   end
 end
