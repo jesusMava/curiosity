@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
+  class Scope
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope.all
+    end
+
+    private
+
+    attr_reader :user, :scope
+  end
+
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -36,18 +51,17 @@ class ApplicationPolicy
     false
   end
 
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
+  protected
 
-    def resolve
-      scope.all
-    end
+  def admin?
+    user.admin?
+  end
 
-    private
+  def owner?
+    record.user == user
+  end
 
-    attr_reader :user, :scope
+  def owner_or_admin?
+    owner? || admin?
   end
 end
