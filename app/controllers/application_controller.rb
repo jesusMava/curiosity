@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:error] = "Unauthorized action"
+    flash[:error] = 'Unauthorized action'
     redirect_to request.referer || root_path, status: :see_other
   end
 end

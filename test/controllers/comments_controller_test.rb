@@ -3,10 +3,20 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  test 'should create a comment' do
-    sign_in create(:user)
-    curiosity = create(:curiosity_card)
+  def user
+    @user ||= create(:user)
+  end
 
+  def curiosity
+    @curiosity ||= create(:curiosity_card)
+  end
+
+  setup do
+    sign_in(user)
+    curiosity
+  end
+
+  test 'should create a comment' do
     post curiosity_card_comments_path(curiosity), params: {
       comment: { message: 'my opinion is nice' }
     }
@@ -15,9 +25,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should response with unprocessable_entity' do
-    sign_in create(:user)
-    curiosity = create(:curiosity_card)
-
     post curiosity_card_comments_path(curiosity), params: {
       comment: { message: 'my' }
     }
@@ -25,21 +32,8 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
-  test 'should not be able to create a comment without login' do
-    curiosity = create(:curiosity_card)
-
-    post curiosity_card_comments_path(curiosity), params: {
-      comment: { message: 'my opinion is nice' }
-    }
-
-    assert_redirected_to new_user_session_path
-  end
-
   test 'user should be able to edit their own comments' do
-    user = create(:user)
-    curiosity = create(:curiosity_card)
     comment = create(:comment, curiosity_card: curiosity, user:)
-    sign_in user
 
     patch curiosity_card_comment_path(curiosity, comment), params: {
       comment: { message: 'my opinion is nice too' }
@@ -48,41 +42,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to curiosity_card_path(curiosity)
   end
 
-  test 'should response unprocessable_entity' do
-    user = create(:user)
-    curiosity = create(:curiosity_card)
+  test 'user should be able to destroy comments' do
     comment = create(:comment, curiosity_card: curiosity, user:)
-    sign_in user
+    assert_difference('Comment.count', -1) do
+      delete curiosity_card_comment_path(curiosity, comment.id)
+    end
 
-    patch curiosity_card_comment_path(curiosity, comment), params: {
-      comment: { message: 'my' }
-    }
-
-    assert_response :unprocessable_entity
-  end
-
-  test 'user should not be able to edit other comments' do
-    user = create(:user)
-    curiosity = create(:curiosity_card)
-    comment = create(:comment, curiosity_card: curiosity)
-    sign_in user
-
-    patch curiosity_card_comment_path(curiosity, comment), params: {
-      comment: { message: 'nice' }
-    }
-
-    assert_redirected_to root_path
-    assert_equal 'Unauthorized action', flash[:error]
-  end
-
-  test 'user should not be able to destroy other comments' do
-    user = create(:user)
-    curiosity = create(:curiosity_card)
-    comment = create(:comment, curiosity_card: curiosity)
-    sign_in user
-
-    delete curiosity_card_comment_path(curiosity, comment.id)
-
-    assert_equal 'Unauthorized action', flash[:error]
+    assert_redirected_to curiosity_card_path(curiosity)
   end
 end
