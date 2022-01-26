@@ -33,7 +33,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'user should be able to edit their own comments' do
-    comment = create(:comment, curiosity_card: curiosity, user:)
+    comment = create(:comment, curiosity_card: curiosity, user: user)
 
     patch curiosity_card_comment_path(curiosity, comment), params: {
       comment: { message: 'my opinion is nice too' }
@@ -43,7 +43,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'user should be able to destroy comments' do
-    comment = create(:comment, curiosity_card: curiosity, user:)
+    comment = create(:comment, curiosity_card: curiosity, user: user)
     assert_difference('Comment.count', -1) do
       delete curiosity_card_comment_path(curiosity, comment.id)
     end
