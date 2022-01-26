@@ -33,8 +33,8 @@ class CommentTest < ActiveSupport::TestCase
     assert message.valid?
   end
 
-  test 'should not be a valid message with more that 250 characters' do
-    text = 'a' * 256
+  test 'should not be a valid message with more that 800 characters' do
+    text = 'a' * 801
     message = build(:comment, message: text)
 
     assert_not message.valid?
