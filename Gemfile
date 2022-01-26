@@ -22,20 +22,19 @@ gem 'puma', '~> 5.0'
 gem 'pundit'
 gem 'rails', '~> 7.0.1'
 gem 'redis', '~> 4.0'
-gem 'reek', require: false
-gem 'rubocop', require: false
-gem 'rubocop-performance', require: false
-gem 'rubocop-rails', require: false
-gem 'rubycritic', require: false
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot'
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'faker'
+  gem 'reek', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubycritic', require: false
 end
 
 group :development do

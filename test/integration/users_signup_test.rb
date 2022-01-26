@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'sign up' do
@@ -11,16 +13,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', new_user_session_path, count: 2
   end
 
-  test "invalid signup information" do
+  test 'invalid signup information' do
     get new_user_registration_path
 
     assert_no_difference 'User.count' do
       post user_session_path, params: {
         user: {
-          name: "",
-          email: "user@invalid",
-          password: "foo",
-          password_confirmation: "bar"
+          name: '',
+          email: 'user@invalid',
+          password: 'foo',
+          password_confirmation: 'bar'
         }
       }
     end
@@ -28,15 +30,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_equal 'Invalid Email or password.', flash[:alert]
   end
 
-  test "valid signup information" do
+  test 'valid signup information' do
     get new_user_registration_path
 
     assert_difference 'User.count', 1 do
       post user_registration_path, params: {
         user: {
-          email: "user@invalid.com",
-          password: "thisIsMyPassword",
-          password_confirmation: "thisIsMyPassword"
+          email: 'user@invalid.com',
+          password: 'thisIsMyPassword',
+          password_confirmation: 'thisIsMyPassword'
         }
       }
     end
@@ -45,7 +47,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_equal 'Welcome! You have signed up successfully.', flash[:notice]
   end
 
-  test "valid login" do
+  test 'valid login' do
     user = create(:user)
     get new_user_registration_path
 
