@@ -1,28 +1,21 @@
 {
   "name": "curiosity",
   "version": "1.0.0",
+  "author": "jesusMava <jesusmacedo7@gmail.com>",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
+  "repository": "git@github.com:jesusMava/curiosity.git",
+  "license": "MIT",
+  "keywords": [],
   "scripts": {
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "rubocop": "bundle exec rubocop",
-    "reek": "bundle exec reek",
-    "fasterer": "bundle exec fasterer",
     "linters": "CMD='run-p -l' yarn linters:base",
-    "linters:base": "$CMD rubocop reek fasterer"
+    "linters:base": "$CMD rubocop"
   },
-  "keywords": [],
-  "author": "jesusMava <jesusmacedo7@gmail.com>",
-  "license": "ISC",
   "devDependencies": {
     "husky": "^7.0.0"
   },
-  "repository": "git@github.com:jesusMava/curiosity.git",
   "dependencies": {
     "npm-run-all": "^4.1.5"
   }

@@ -20,5 +20,8 @@ module Curiosity
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # TODO: remove deprecation warning before upgrade to rails 7.1
+    config.active_storage.silence_invalid_content_types_warning = true
   end
 end
