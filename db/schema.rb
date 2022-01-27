@@ -63,15 +63,15 @@ ActiveRecord::Schema.define(version: 2022_01_27_002337) do
     t.index ["user_id"], name: "index_curiosity_cards_on_user_id"
   end
 
-  create_table "reactions", force: :cascade do |t|
-    t.boolean "statement"
+  create_table "statements", force: :cascade do |t|
+    t.boolean "is_real", null: false
     t.bigint "curiosity_card_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["curiosity_card_id"], name: "index_reactions_on_curiosity_card_id"
-    t.index ["user_id", "curiosity_card_id"], name: "index_reactions_on_user_id_and_curiosity_card_id", unique: true
-    t.index ["user_id"], name: "index_reactions_on_user_id"
+    t.index ["curiosity_card_id"], name: "index_statements_on_curiosity_card_id"
+    t.index ["user_id", "curiosity_card_id"], name: "index_statements_on_user_id_and_curiosity_card_id", unique: true
+    t.index ["user_id"], name: "index_statements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,6 +91,6 @@ ActiveRecord::Schema.define(version: 2022_01_27_002337) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "curiosity_cards"
   add_foreign_key "comments", "users"
-  add_foreign_key "reactions", "curiosity_cards"
-  add_foreign_key "reactions", "users"
+  add_foreign_key "statements", "curiosity_cards"
+  add_foreign_key "statements", "users"
 end

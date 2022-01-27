@@ -5,7 +5,7 @@ class CuriosityCard < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :users, through: :comments
-  has_many :reactions, dependent: :destroy
+  has_many :statements, dependent: :destroy
 
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]

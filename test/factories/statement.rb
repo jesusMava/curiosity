@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :reaction do
+  factory :statement do
     user
     curiosity_card
-    statement { nil }
+    is_real { true }
   end
 end
