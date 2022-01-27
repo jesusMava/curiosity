@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :curiosity_cards, dependent: :destroy
-
   has_many :comments, dependent: :destroy
+  has_many :statements, dependent: :destroy
 
   enum role: { basic: 0, admin: 1 }
 end
