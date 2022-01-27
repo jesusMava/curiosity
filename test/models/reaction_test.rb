@@ -12,11 +12,17 @@ class ReactionTest < ActiveSupport::TestCase
   end
 
   setup do
-    @reaction = create(:reaction, user: user, curiosity_card: curiosity)
+    @reaction = create(:reaction,
+                       user: user,
+                       curiosity_card: curiosity,
+                       statement: true)
   end
 
   test 'should exit only one register by action' do
-    reaction_again = build_stubbed(:reaction, user: user, curiosity_card: curiosity)
+    reaction_again = build_stubbed(:reaction,
+                                   user: user,
+                                   curiosity_card: curiosity,
+                                   statement: true)
 
     assert_not reaction_again.valid?
   end
@@ -31,5 +37,11 @@ class ReactionTest < ActiveSupport::TestCase
     @reaction.statement = false
 
     assert @reaction.valid?
+  end
+
+  test 'should not allow nil values' do
+    @reaction.statement = nil
+
+    assert_not @reaction.valid?
   end
 end
