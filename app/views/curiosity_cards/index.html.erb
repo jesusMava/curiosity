@@ -37,12 +37,14 @@
             <div class="media-content">
               <div class="content">
                 <nav class="level is-mobile">
-                  <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
+                  <%= link_to curiosity_card_statement_index_path(curiosity, is_real: true),
+                    class: 'level-item', data: { 'turbo-method' => :post } do %>
                     <span class="icon is-small has-text-centered">
                       <i aria-hidden="true" class="fas fa-check"> Real</i>
                     </span>
                   <% end %>
-                  <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
+                  <%= link_to curiosity_card_statement_index_path(curiosity, is_real: false),
+                    class: 'level-item', data: { 'turbo-method' => :post } do %>
                     <span class="icon is-small has-text-centered">
                       <i aria-hidden="true" class="fas fa-times"> Fake</i>
                     </span>
