@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   resources :curiosity_cards do
     resources :comments
+    resources :statement, only: %i[create]
   end
+
 end
