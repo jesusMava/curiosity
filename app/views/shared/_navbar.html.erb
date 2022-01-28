@@ -1,0 +1,33 @@
+<nav aria-label="main navigation" class="navbar box" role="navigation">
+  <div class="navbar-brand image is-64x64">
+    <a href="/">
+      <%= image_tag('curiosity.jpg', class: 'is-rounded', size: '50px') %>
+    </a>
+  </div>
+  <a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="navbar-basic-example" role="button">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+
+  <div class="navbar-end">
+    <div class="navbar-item is-size-3 is-uppercase
+    has-text-weight-medium has-text-weight-bold
+    has-text-info">
+      curiosity
+    </div>
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <% if !current_user %>
+          <a class="button is-primary" href="<%= new_user_registration_path %>">
+            Registrate
+          </a>
+        <% end %>
+        <%= user_is_login %>
+      </div>
+    </div>
+  </div>
+</nav>
