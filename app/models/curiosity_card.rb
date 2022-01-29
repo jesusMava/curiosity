@@ -17,4 +17,12 @@ class CuriosityCard < ApplicationRecord
   validates :category, presence: true
 
   enum category: { general: 0, programming: 1 }
+
+  def published?
+    published_at.present?
+  end
+
+  def publish!
+    self.published_at = DateTime.current
+  end
 end

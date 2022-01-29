@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2022_01_29_003009) do
     t.bigint "user_id"
     t.integer "category", default: 0, null: false
     t.boolean "truthful"
-    t.boolean "published", default: false
+    t.datetime "published_at", precision: 6
     t.text "extra_comment"
     t.index ["user_id"], name: "index_curiosity_cards_on_user_id"
   end
