@@ -24,7 +24,8 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
       curiosity_card:
       {
         title: 'my title is nice',
-        content: 'this content is nice too '
+        content: 'this content is nice too ',
+        category: 'general'
       }
     }
 

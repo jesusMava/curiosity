@@ -14,6 +14,7 @@ class CuriosityCard < ApplicationRecord
   validates :title, presence: true, length: { minimum: 7 }
   validates :content, presence: true
   validates :images, content_type: %i[png jpg jpeg]
+  validates :category, presence: true
 
-  enum action: { fake: 0, real: 1 }
+  enum category: { general: 0, programming: 1 }
 end

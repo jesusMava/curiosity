@@ -9,6 +9,7 @@
   - @curiosity.errors.full_messages_for(:content).each do |msg|
     = msg
   %br
+  = f.select(:category, options_for_select(CuriosityCard.categories.map {|key,_value| [key.capitalize, key] }))
   = f.file_field :images, multiple: true, include_hidden: false
   - @curiosity.errors.full_messages_for(:images).each do |msg|
     = msg
