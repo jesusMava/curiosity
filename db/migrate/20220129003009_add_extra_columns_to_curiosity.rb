@@ -7,5 +7,7 @@ class AddExtraColumnsToCuriosity < ActiveRecord::Migration[7.0]
     rename_column :curiosity_cards, :action, :category
 
     change_column_null(:curiosity_cards, :category, false)
+
+    change_column_default(:curiosity_cards, :category, 0)
   end
 end

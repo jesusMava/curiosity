@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_01_29_003009) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.integer "category", null: false
+    t.integer "category", default: 0, null: false
     t.boolean "truthful"
     t.boolean "published", default: false
     t.text "extra_comment"
