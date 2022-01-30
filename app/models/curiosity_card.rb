@@ -2,6 +2,7 @@
 
 class CuriosityCard < ApplicationRecord
   belongs_to :user
+  belongs_to :category
 
   has_many :comments, dependent: :destroy
   has_many :users, through: :comments
@@ -14,9 +15,6 @@ class CuriosityCard < ApplicationRecord
   validates :title, presence: true, length: { minimum: 7 }
   validates :content, presence: true
   validates :images, content_type: %i[png jpg jpeg]
-  validates :category, presence: true
-
-  enum category: { general: 0, programming: 1 }
 
   def published?
     published_at.present?

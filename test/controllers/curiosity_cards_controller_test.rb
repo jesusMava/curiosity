@@ -17,15 +17,16 @@ class CuriosityCardsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should create' do
+  test 'should redirect to current curiosity created' do
     sign_in create(:user)
+    category = create(:category)
 
     post curiosity_cards_path, params: {
       curiosity_card:
       {
         title: 'my title is nice',
         content: 'this content is nice too ',
-        category: 'general'
+        category_id: category.id
       }
     }
 
