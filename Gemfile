@@ -8,7 +8,6 @@ ruby '3.1.0'
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'devise'
-gem 'haml-rails'
 gem 'image_processing', '>= 1.2'
 gem 'jbuilder'
 gem 'mini_magick'
