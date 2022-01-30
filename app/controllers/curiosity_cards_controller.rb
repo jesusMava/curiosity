@@ -42,7 +42,7 @@ class CuriosityCardsController < ApplicationController
   private
 
   def curiosity_cards_params
-    params.require(:curiosity_card).permit(:title, :content, :category, images: [])
+    params.require(:curiosity_card).permit(:title, :content, :category_id, images: [])
   end
 
   def set_curiosity
