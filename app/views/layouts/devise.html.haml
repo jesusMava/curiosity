@@ -16,14 +16,12 @@
       .hero-body
         .columns
           .column.is-half.is-offset-one-quarter
-            .has-text-centered
-              %h1.title.is-1.main-title Curiosity
             .card
               .card-content.has-text-centered
                 - if notice
-                  %p.alert.alert-success
+                  %p.notification.is-success
                     = notice
                 - if alert
-                  %p.alert.alert-danger
+                  %p.notification.is-danger
                     = alert
                 = yield

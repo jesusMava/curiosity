@@ -1,0 +1,48 @@
+<div class="columns is-mobile">
+  <div class="column is-half is-offset-one-quarter">
+    <%= form_with model: curiosity do |f| %>
+      <div class='field'>
+        <div class='control'>
+          <%= f.label :title, class:'label'%>
+          <%= f.text_field :title, class:'input' %>
+          <% @curiosity.errors.full_messages_for(:title).each do |msg| %>
+            <%= msg %>
+          <% end %>
+        </div>
+      </div>
+      <br/>
+      <%= f.label :content, class:'label' %>
+      <%= f.text_area :content, class:'textarea'%>
+      <% @curiosity.errors.full_messages_for(:content).each do |msg| %>
+        <%= msg %>
+      <% end %>
+      <br/>
+
+      <div class="content file">
+        <label class="file-label">
+          <%= f.file_field :images, multiple: true, include_hidden: false, class:'file-input'%>
+          <% @curiosity.errors.full_messages_for(:images).each do |msg| %>
+            <%= msg %>
+          <% end %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="select content">
+        <%= f.select(:category_id, options_for_select(Category.all.map { |p| [p.name, p.id] })) %>
+      </div>
+
+      <div class='has-text-right'>
+        <%= f.submit class: 'button is-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

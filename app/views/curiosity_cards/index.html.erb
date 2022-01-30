@@ -9,7 +9,7 @@
 <% end %>
 <div class="row columns is-multiline" id="app">
   <% @curiosities.each do |curiosity| %>
-    <div class="column is-3">
+    <div class="column is-4">
       <div class="card">
         <div class="card-image">
           <figure class="image is-16by9">
@@ -24,13 +24,16 @@
           <div class="media">
             <div class="media-content">
               <p class="title is-4">
-                <%= curiosity.title %>
+                <%= curiosity.title.truncate(50) %>
               </p>
             </div>
           </div>
           <div class="content">
             <span>
-              <%= curiosity.content %>
+              <%= curiosity.content.truncate(100)%>
+              <% if curiosity.content.size >= 100 %>
+                <%= link_to 'see more', curiosity_card_path(curiosity)%>
+              <% end %>
             </span>
           </div>
           <article class="media">
@@ -39,19 +42,19 @@
                 <nav class="level is-mobile">
                   <%= link_to curiosity_card_statement_index_path(curiosity, is_real: true),
                     class: 'level-item', data: { 'turbo-method' => :post } do %>
-                    <span class="icon is-small has-text-centered">
-                      <i aria-hidden="true" class="fas fa-check"> Real</i>
+                    <span class="icon is-small has-text-centered icon_size">
+                      <i aria-hidden="true" class="fas fa-check fa-lg"> Real</i>
                     </span>
                   <% end %>
                   <%= link_to curiosity_card_statement_index_path(curiosity, is_real: false),
                     class: 'level-item', data: { 'turbo-method' => :post } do %>
-                    <span class="icon is-small has-text-centered">
-                      <i aria-hidden="true" class="fas fa-times"> Fake</i>
+                    <span class="icon has-text-centered">
+                      <i aria-hidden="true" class="fas fa-times fa-lg"> Fake</i>
                     </span>
                   <% end %>
                   <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
                     <span class="icon is-small has-text-centered">
-                      <i aria-hidden="true" class="fas fa-comment"> Comments</i>
+                      <i aria-hidden="true" class="fas fa-comment fa-lg"> Comments</i>
                     </span>
                   <% end %>
                 </nav>
