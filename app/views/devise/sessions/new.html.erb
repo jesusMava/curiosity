@@ -1,0 +1,29 @@
+<h2 class="title is-3">Log in</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false } }) do |f| %>
+  <div class="field">
+    <%= f.label :email, class: 'label' %>
+    <div class="control">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, class: 'label' %>
+    <div class="control">
+      <%= f.password_field :password, autocomplete: "current-password", class: 'input' %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class='field'>
+      <div calss='control'>
+        <%= f.check_box :remember_me %>
+        <span>Remember me</span>
+      </div>
+    </div>
+  <% end %>
+  <div class='has-text=right'>
+    <%=f.submit 'Log in', class: 'button is-primary' %>
+  </div>
+<% end %>
+<%= render "devise/shared/links" %>
