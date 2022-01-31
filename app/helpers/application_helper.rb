@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def user_is_login
-    if current_user
-      button_to 'Log out', destroy_user_session_path,
-                method: :delete, class: 'button is-light',
-                data: { turbo: 'false' }
-    else
-      link_to 'Iniciar sesión', new_user_session_path, class: 'button is-info is-outlined'
-    end
+  def error_tag_for(model, key)
+    messages = model.errors.full_messages_for(key)
+    return if messages.blank?
+
+    tag.span(messages.join(','), class: 'has-text-danger')
   end
 end

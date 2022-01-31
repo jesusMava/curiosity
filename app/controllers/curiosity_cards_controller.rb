@@ -5,7 +5,7 @@ class CuriosityCardsController < ApplicationController
   before_action :set_curiosity, only: %i[show edit update destroy]
 
   def index
-    @curiosities = CuriosityCard.all
+    @curiosities = policy_scope(CuriosityCard)
   end
 
   def show; end
@@ -42,7 +42,7 @@ class CuriosityCardsController < ApplicationController
   private
 
   def curiosity_cards_params
-    params.require(:curiosity_card).permit(:title, :content, :category_id, images: [])
+    permitted_attributes(CuriosityCard)
   end
 
   def set_curiosity

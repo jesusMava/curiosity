@@ -8,7 +8,7 @@ class StatementControllerTest < ActionDispatch::IntegrationTest
     sign_in create(:user)
 
     assert_difference('Statement.count', 1) do
-      post curiosity_card_statement_index_path(curiosity, is_real: true)
+      patch curiosity_card_statement_path(curiosity, is_real: true)
     end
   end
 
@@ -16,7 +16,7 @@ class StatementControllerTest < ActionDispatch::IntegrationTest
     curiosity = create(:curiosity_card)
     sign_in create(:user)
 
-    post curiosity_card_statement_index_path(curiosity, is_real: true)
+    patch curiosity_card_statement_path(curiosity, is_real: true)
 
     assert_redirected_to root_path
   end
