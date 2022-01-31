@@ -1,19 +1,23 @@
-class CuriosityCards::PublishesController < ApplicationController
-  before_action :set_curiosity
+# frozen_string_literal: true
 
-  def update
-    @curiosity.publish!
-    redirect_to @curiosity
-  end
+module CuriosityCards
+  class PublishesController < ApplicationController
+    before_action :set_curiosity
 
-  def destroy
-    @curiosity.unpublish!
-    redirect_to @curiosity, status: :see_other
-  end
+    def update
+      @curiosity.publish!
+      redirect_to @curiosity
+    end
 
-  private
+    def destroy
+      @curiosity.unpublish!
+      redirect_to @curiosity, status: :see_other
+    end
 
-  def set_curiosity
-    @curiosity = authorize(CuriosityCard.find(params[:curiosity_card_id]))
+    private
+
+    def set_curiosity
+      @curiosity = authorize(CuriosityCard.find(params[:curiosity_card_id]))
+    end
   end
 end
