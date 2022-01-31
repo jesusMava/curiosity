@@ -1,68 +1,28 @@
-
-<% if current_user %>
-  <div class="row colums is-mobile">
-    <div class="column is-2 is-offset-10">
-      <%= link_to 'Add New Curiosity',
-        new_curiosity_card_path, class: 'button is-info mb-2 is-outlined' %>
-    </div>
-  </div>
-<% end %>
-<div class="row columns is-multiline" id="app">
-  <% @curiosities.each do |curiosity| %>
-    <div class="column is-4">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-16by9">
-            <% if curiosity.images.attached? %>
-              <%= image_tag curiosity.images[0].variant(:thumb) %>
-            <% else %>
-              <img alt="default image" src="https://bulma.io/images/placeholders/1280x960.png"/>
-            <% end %>
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">
-                <%= curiosity.title.truncate(50) %>
-              </p>
-            </div>
-          </div>
-          <div class="content">
-            <span>
-              <%= curiosity.content.truncate(100)%>
-              <% if curiosity.content.size >= 100 %>
-                <%= link_to 'see more', curiosity_card_path(curiosity)%>
-              <% end %>
-            </span>
-          </div>
-          <article class="media">
-            <div class="media-content">
-              <div class="content">
-                <nav class="level is-mobile">
-                  <%= link_to curiosity_card_statement_index_path(curiosity, is_real: true),
-                    class: 'level-item', data: { 'turbo-method' => :post } do %>
-                    <span class="icon is-small has-text-centered icon_size">
-                      <i aria-hidden="true" class="fas fa-check fa-lg"> Real</i>
-                    </span>
-                  <% end %>
-                  <%= link_to curiosity_card_statement_index_path(curiosity, is_real: false),
-                    class: 'level-item', data: { 'turbo-method' => :post } do %>
-                    <span class="icon has-text-centered">
-                      <i aria-hidden="true" class="fas fa-times fa-lg"> Fake</i>
-                    </span>
-                  <% end %>
-                  <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
-                    <span class="icon is-small has-text-centered">
-                      <i aria-hidden="true" class="fas fa-comment fa-lg"> Comments</i>
-                    </span>
-                  <% end %>
-                </nav>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
+<%= render "shared/curiosity_cards", search: @curiosities do |curiosity| %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to curiosity_card_path(curiosity),
+      class: 'button is-primary level-item' do %>
+      <span class="icon is-small has-text-centered icon_size">
+      Show
+      </span>
+    <% end %>
+  <% else %>
+    <%= link_to curiosity_card_statement_index_path(curiosity, is_real: true),
+      class: 'level-item', data: { 'turbo-method' => :post } do %>
+      <span class="icon is-small has-text-centered icon_size">
+        <i aria-hidden="true" class="fas fa-check fa-lg"> Real</i>
+      </span>
+    <% end %>
+    <%= link_to curiosity_card_statement_index_path(curiosity, is_real: false),
+      class: 'level-item', data: { 'turbo-method' => :post } do %>
+      <span class="icon has-text-centered">
+        <i aria-hidden="true" class="fas fa-times fa-lg"> Fake</i>
+      </span>
+    <% end %>
+    <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
+      <span class="icon is-small has-text-centered">
+        <i aria-hidden="true" class="fas fa-comment fa-lg"> Comments</i>
+      </span>
+    <% end %>
   <% end %>
-</div>
+<% end %>

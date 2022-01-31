@@ -26,6 +26,10 @@
             Registrate
           </a>
         <% end %>
+        <% if user_signed_in? && current_user.admin?%>
+          <%= link_to 'Unpublished Cards', curiosity_card_admin_index_path,
+            class: 'button is-info is-outlined'%>
+        <% end %>
         <%= user_is_login %>
       </div>
     </div>

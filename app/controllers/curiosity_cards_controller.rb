@@ -5,7 +5,7 @@ class CuriosityCardsController < ApplicationController
   before_action :set_curiosity, only: %i[show edit update destroy]
 
   def index
-    @curiosities = CuriosityCard.all
+    @curiosities = CuriosityCard.published
   end
 
   def show; end

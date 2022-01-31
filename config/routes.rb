@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :statement, only: %i[create]
   end
 
+  resources :curiosity_card_admin
 end

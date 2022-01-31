@@ -16,6 +16,9 @@ class CuriosityCard < ApplicationRecord
   validates :content, presence: true
   validates :images, content_type: %i[png jpg jpeg]
 
+  scope :published, -> { where.not(published_at: nil) }
+  scope :unpublished, -> { where(published_at: nil) }
+
   def published?
     published_at.present?
   end

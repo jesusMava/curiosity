@@ -6,11 +6,16 @@
     <% end %>
     <%= @curiosity.content %>
     </br>
-    <% if current_user %>
+    <% if user_signed_in? %>
       <div class="column is-4 is-offset-8">
         <% if policy(@curiosity).edit? %>
-          <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
-            class: 'button is-primary is-outlined' %>
+          <% if current_user.admin? %>
+            <%= link_to 'Edit', edit_curiosity_card_admin_path(@curiosity),
+              class: 'button is-primary is-outlined' %>
+          <% else %>
+            <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
+              class: 'button is-primary is-outlined' %>
+          <% end %>
         <% end %>
         <% if policy(@curiosity).destroy? %>
           <%= link_to 'Destroy', curiosity_card_path(@curiosity),
