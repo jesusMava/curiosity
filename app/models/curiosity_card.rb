@@ -24,6 +24,10 @@ class CuriosityCard < ApplicationRecord
   end
 
   def publish!
-    self.published_at = DateTime.current
+    update(published_at: DateTime.current)
+  end
+
+  def unpublish!
+    update(published_at: nil)
   end
 end

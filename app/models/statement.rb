@@ -8,4 +8,10 @@ class Statement < ApplicationRecord
                                     message: 'should happen once per reaction' }
   validates :is_real, inclusion: { in: [true, false],
                                    message: 'is_real should be true or false' }
+
+  def self.upsert(**args)
+    find_or_initialize_by(user: args[:user], curiosity_card: args[:curiosity_card]) do |statement|
+      statement.is_real = args[:is_real]
+    end.save
+  end
 end

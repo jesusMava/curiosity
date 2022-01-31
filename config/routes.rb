@@ -2,13 +2,12 @@
 
 Rails.application.routes.draw do
   root 'curiosity_cards#index'
-
   devise_for :users
 
   resources :curiosity_cards do
     resources :comments
-    resources :statement, only: %i[create]
+    resource :statement, only: %i[update]
+    patch "publish", to: "curiosity_cards/publishes#update", as: :publish
+    delete "publish", to: "curiosity_cards/publishes#destroy", as: :unpublish
   end
-
-  resources :curiosity_card_admin
 end

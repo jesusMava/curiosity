@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render 'navbar' %>
     <div class="container mt-3">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "notification is-#{message_type}") %>

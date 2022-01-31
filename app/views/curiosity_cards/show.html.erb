@@ -1,21 +1,25 @@
 <h2 class='title is-2'><%= @curiosity.title %></h2>
+<p class="subtitle">
+  <%= tag.span((@curiosity.published? ? "Published" : "Upublished"), class: "tag is-info") if current_user&.admin? %>
+</p>
 <div class="columns">
   <div class="column">
-    <% @curiosity.images.each do |image| %> 
+    <% @curiosity.images.each do |image| %>
       <%= image_tag(url_for(image), width: "650", height: "450") %>
     <% end %>
     <%= @curiosity.content %>
     </br>
     <% if user_signed_in? %>
-      <div class="column is-4 is-offset-8">
+      <div class="buttons is-pulled-right">
         <% if policy(@curiosity).edit? %>
           <% if current_user.admin? %>
-            <%= link_to 'Edit', edit_curiosity_card_admin_path(@curiosity),
-              class: 'button is-primary is-outlined' %>
-          <% else %>
-            <%= link_to 'Edit', edit_curiosity_card_path(@curiosity),
-              class: 'button is-primary is-outlined' %>
+            <% if @curiosity.published? %>
+              <%= link_to 'Unpublish', curiosity_card_unpublish_path(@curiosity), class: 'button is-warning', data: { "turbo-method" => :delete } %>
+            <% else %>
+              <%= link_to 'Publish', curiosity_card_publish_path(@curiosity), class: 'button is-info', data: { "turbo-method" => :patch } %>
+            <% end %>
           <% end %>
+          <%= link_to 'Edit', edit_curiosity_card_path(@curiosity), class: 'button is-primary is-outlined' %>
         <% end %>
         <% if policy(@curiosity).destroy? %>
           <%= link_to 'Destroy', curiosity_card_path(@curiosity),
@@ -38,4 +42,3 @@
     <%= render @curiosity.comments %>
   </div>
 </div>
-

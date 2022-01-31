@@ -21,16 +21,14 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
-        <% if !current_user %>
-          <a class="button is-primary" href="<%= new_user_registration_path %>">
-            Registrate
-          </a>
+        <% if user_signed_in? %>
+          <%= button_to 'Log out', destroy_user_session_path,
+                    method: :delete, class: 'button is-light',
+                    data: { turbo: 'false' } %>
+        <% else %>
+          <%= link_to "Registrate", new_user_registration_path, class: 'button is-primary' %>
+          <%= link_to 'Iniciar sesión', new_user_session_path, class: 'button is-info is-outlined' %>
         <% end %>
-        <% if user_signed_in? && current_user.admin?%>
-          <%= link_to 'Unpublished Cards', curiosity_card_admin_index_path,
-            class: 'button is-info is-outlined'%>
-        <% end %>
-        <%= user_is_login %>
       </div>
     </div>
   </div>
