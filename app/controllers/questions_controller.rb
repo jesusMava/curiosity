@@ -2,18 +2,13 @@
 
 class QuestionsController < ApplicationController
   before_action :set_game
-  before_action :set_question, only: %i[show edit update]
-
-  def index
-    @questions = authorize(@game.questions)
-  end
-
-  def show; end
+  before_action :set_question, only: %i[edit update]
 
   def edit; end
 
   def update
     if @question.update(question_params)
+      @game.update_total_score
       redirect_to game_url(@question.game), notice: 'Question was successfully updated.'
     else
       render :edit, status: :unprocessable_entity

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :games, except: %i[edit update destroy] do
-    resources :questions
+    resources :questions, only: %i[edit update]
   end
 
   resources :curiosity_cards do
