@@ -10,4 +10,7 @@ Rails.application.routes.draw do
     patch "publish", to: "curiosity_cards/publishes#update", as: :publish
     delete "publish", to: "curiosity_cards/publishes#destroy", as: :unpublish
   end
+
+  resources :games, only: %i[index show update]
+  resources :questions, only: %i[show]
 end

@@ -1,0 +1,18 @@
+<div class="box">
+  <div class="block">Category:
+    <h2 class='title has-text-primary'> General </h2>
+  </div>
+  <div class='field has-text-right'>
+    <%= link_to 'General', game_path('general', game_id: @game.id), class: "button is-link is-outlined" %>
+  </div>
+</div>
+
+<div class="box">
+  <div class="block">Category:
+    <h2 class='title has-text-primary'> Programming</h2>
+  </div>
+  <div class='field has-text-right'>
+    <%= link_to 'Programming', game_path('programming', game_id: @game.id),
+      class: "button is-link is-outlined" %>
+  </div>
+</div>

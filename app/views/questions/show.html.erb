@@ -1,0 +1,30 @@
+<div class="row columns is-multiline" id="app">
+  <% @questions.each do |question| %>
+    <div class='column is-half is-offset-one-quarter'>
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">
+                <%= question.curiosity_card.title %>
+              </p>
+            </div>
+          </div>
+          <div class="content">
+            <span>
+              <%= question.curiosity_card.content %>
+            </span>
+          </div>
+          <div class="card">
+            <footer class="card-footer">
+              <%= link_to 'Real', game_path(question, is_real: true), remote: true,
+                data: { 'turbo-method' => :patch }, class: 'button is-primary card-footer-item' %>
+              <%= link_to 'Fake', game_path(question, is_real: false), remote: true,
+                data: { 'turbo-method' => :patch }, class: 'button is-danger card-footer-item' %>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
