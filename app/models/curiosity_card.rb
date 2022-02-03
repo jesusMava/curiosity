@@ -21,7 +21,7 @@ class CuriosityCard < ApplicationRecord
   scope :unpublished, -> { where(published_at: nil) }
   scope :random_curiosities, lambda { |category|
     published.
-      where(category_id: Category.where(name: category).select(:id)).order('RANDOM()').take(5)
+      where(category: category).order('RANDOM()').take(5)
   }
 
   def published?
@@ -34,11 +34,5 @@ class CuriosityCard < ApplicationRecord
 
   def unpublish!
     update(published_at: nil)
-  end
-
-  def self.set_questions(game, category)
-    random_curiosities(category).each do |q|
-      Question.find_or_create_by(game_id: game, curiosity_card_id: q.id)
-    end
   end
 end

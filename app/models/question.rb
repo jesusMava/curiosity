@@ -12,4 +12,8 @@ class Question < ApplicationRecord
   def self.take_questions(game)
     Question.where(game_id: game).where(answer: nil).take(5)
   end
+
+  def unanswered?
+    answer.nil?
+  end
 end

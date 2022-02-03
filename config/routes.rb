@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'curiosity_cards#index'
   devise_for :users
 
+  resources :games, except: %i[edit update destroy]
+
   resources :curiosity_cards do
     resources :comments
     resource :statement, only: %i[update]
