@@ -4,16 +4,18 @@ class Question < ApplicationRecord
   belongs_to :game
   belongs_to :curiosity_card
 
-  def self.answer_question(question, response)
-    question.update(answer: response)
-    question.update(score: 20) if question.curiosity_card.truthful == question.answer
+  scope :answered, -> { where.not(answer: nil) }
+  scope :unanswered, -> { where(answer: nil) }
+
+  before_save :set_score
+
+  def correct?
+    curiosity_card.truthful == answer
   end
 
-  def self.take_questions(game)
-    Question.where(game_id: game).where(answer: nil).take(5)
-  end
+  private
 
-  def unanswered?
-    answer.nil?
+  def set_score
+    self.score = correct? ? 20 : 0
   end
 end

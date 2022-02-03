@@ -9,6 +9,7 @@ class GamesController < ApplicationController
 
   def show
     @game = authorize(Game.find(params[:id]))
+    @game.update_total_score
   end
 
   def new

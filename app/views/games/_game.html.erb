@@ -1,4 +1,15 @@
 <div id="<%= dom_id game %>">
-  <!-- Questions -->
-  <!-- Answer form -->
+  <% if game.incomplete? %>
+    <div id="previous_question">
+      <%= render game.previous_question %>
+      <button type="button" name="button">Ver siguiente pregunta</button>
+    </div>
+    <div id="current_question">
+      <% question = game.next_question %>
+      <%= render question %>
+      <%= render "questions/form", question: question %>
+    </div>
+  <% else %>
+  <h1>Game over!!</h1>
+  <% end %>
 </div>
