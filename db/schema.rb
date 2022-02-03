@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_29_230842) do
+ActiveRecord::Schema.define(version: 2022_02_03_195033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,27 @@ ActiveRecord::Schema.define(version: 2022_01_29_230842) do
     t.index ["user_id"], name: "index_curiosity_cards_on_user_id"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.integer "total_score", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_games_on_category_id"
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "curiosity_card_id", null: false
+    t.integer "score", default: 0, null: false
+    t.boolean "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["curiosity_card_id"], name: "index_questions_on_curiosity_card_id"
+    t.index ["game_id"], name: "index_questions_on_game_id"
+  end
+
   create_table "statements", force: :cascade do |t|
     t.boolean "is_real", null: false
     t.bigint "curiosity_card_id", null: false
@@ -101,6 +122,9 @@ ActiveRecord::Schema.define(version: 2022_01_29_230842) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "curiosity_cards"
   add_foreign_key "comments", "users"
+  add_foreign_key "games", "users"
+  add_foreign_key "questions", "curiosity_cards"
+  add_foreign_key "questions", "games"
   add_foreign_key "statements", "curiosity_cards"
   add_foreign_key "statements", "users"
 end
