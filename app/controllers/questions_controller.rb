@@ -9,7 +9,9 @@ class QuestionsController < ApplicationController
   def update
     if @question.update(question_params)
       @game.update_total_score
-      redirect_to game_url(@question.game), notice: 'Question was successfully updated.'
+      resp = @question.curiosity_card.truthful ? :success : :danger
+      flash[resp] = @question.curiosity_card.extra_comment
+      redirect_to game_url(@question.game)
     else
       render :edit, status: :unprocessable_entity
     end
