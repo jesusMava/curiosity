@@ -17,7 +17,7 @@ class GamesController < ApplicationController
 
   def create
     @game = authorize(Game.new(game_params))
-    @game.user = current_use
+    @game.user = current_user
 
     if @game.save
       redirect_to game_url(@game), notice: 'Game was successfully created.'

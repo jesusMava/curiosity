@@ -1,15 +1,26 @@
-<div id="<%= dom_id game %>">
-  <% if game.incomplete? %>
-    <div id="previous_question">
-      <%= render game.previous_question %>
-      <button type="button" name="button">Ver siguiente pregunta</button>
+<div class="row columns is-multiline" id="app">
+  <div class='column is-half is-offset-one-quarter'>
+    <h2 class='title'> Total score: <%= game.total_score %> </h2>
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <div id="<%= dom_id game %>">
+              <% if game.incomplete? %>
+                <div id="current_question">
+                  <% question = game.next_question %>
+                  <%= render "questions/form", question: question %>
+                </div>
+              <% else %>
+                <h1 class='title has-text-centered'>Game over!!</h1>
+                <div class='field has-text-right'>
+                  <%= link_to 'Play again', games_path, class: "button is-link is-outlined" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="current_question">
-      <% question = game.next_question %>
-      <%= render question %>
-      <%= render "questions/form", question: question %>
-    </div>
-  <% else %>
-  <h1>Game over!!</h1>
-  <% end %>
+  </div>
 </div>

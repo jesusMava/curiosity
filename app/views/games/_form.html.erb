@@ -1,22 +1,27 @@
-<%= form_with(model: game) do |form| %>
-  <% if game.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+<div class="box">
+  <div class="block">
+    <h2 class='title has-text-primary'> Select one Category:</h2>
+    <%= form_with(model: game) do |form| %>
+      <% if game.errors.any? %>
+        <div>
+          <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+          <ul>
+            <% game.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-      <ul>
-        <% game.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="field">
+        <div class="select is-rounded is-medium">
+          <%= form.collection_select :category_id, Category.all, :id, :name %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :category, class: "label" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name %>
+      <div>
+        <%= form.submit class: 'button is-primary' %>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
