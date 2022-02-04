@@ -58,7 +58,7 @@ class ApplicationPolicy
   protected
 
   def admin?
-    user.admin?
+    user&.admin?
   end
 
   def owner?

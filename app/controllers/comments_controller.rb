@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @comment = authorize(current_user.comments.find(params[:id]))
+    @comment = authorize(Comment.find(params[:id]))
   end
 
   def set_curiosity_card
