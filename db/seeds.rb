@@ -85,7 +85,112 @@ end
 
 CuriosityCard.find_or_create_by(title: 'Conector de auriculares con 3 lineas significa que tiene microfono?') do |curiosity|
   curiosity.content = "Si, Los auriculares con 3 rayas en sus conectores significan que
-  cuentan con micrófono, y cuando son 2 lineas significa lo contrario",
+  cuentan con micrófono, y cuando son 2 lineas significa lo contrario"
   curiosity.user = user
   curiosity.category = general_category
+end
+
+CuriosityCard.find_or_create_by(title: 'Can we simplify the check we make on this collection?') do |curiosity|
+  curiosity.content = "
+  if users.size > 1
+    # Handle multiple users.
+  end
+
+  for this:
+  if users.many?
+    # Handle multiple users.
+  end
+  "
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = 'yes, we can use .many?
+  This is a pleasant step toward expressive code'
+end
+
+CuriosityCard.find_or_create_by(title: 'Is there a way we can prevent Rails from generating these files in the first place?') do |curiosity|
+  curiosity.content = "
+  When generating a model via Rails' generators, for instance rails g model Project title complete:boolean,
+  Rails will also generate helpers and assets. In most cases, we don't actually want these model
+  specific files and end up deleting them.
+  "
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = '
+  We can disable generation of helpers and assets using the following configuration block in our config/application.rb file:
+
+  config.generators do |generate|
+    generate.helper false
+    generate.assets false
+  end
+  '
+end
+
+CuriosityCard.find_or_create_by(title: 'Can we use find_each and specify a batch size to iterate over all users in a more memory efficient way?') do |curiosity|
+  curiosity.content = "
+  Our company has a weekly newsletter we send out to all users, but recently the process started crashing
+  due to memory issues and our ever increasing user base.
+  What can we do to prevent the crashing?
+
+  User.all.each do |user|
+    Newsletter.weekly(user).deliver_now
+  end
+  "
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = '
+  We can use find_each and specify a batch size to iterate over all users in a more memory efficient way:
+  User.find_each(batch_size: 100) do |user|
+    Newsletter.weekly(user).deliver_now
+  end
+  '
+end
+
+CuriosityCard.find_or_create_by(title: 'Test phases are:') do |curiosity|
+  curiosity.content = "
+  1.- Setup
+  2.- Exercise
+  3.- Verify
+  4.- Teardown
+  "
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = '
+  Good tests follow these phases in order and do not revisit (or mix) phases.
+  Following this pattern gives your tests a predictability that will make them more readable (and who hates that?)
+  '
+end
+
+CuriosityCard.find_or_create_by(title: 'Should private methods be tested?') do |curiosity|
+  curiosity.content = ""
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = '
+  No.
+  Testing private methods directly is undesirable because they should be an implementation detail hidden from outside callers.
+  '
+end
+
+CuriosityCard.find_or_create_by(title: 'Is there a more direct way to accomplish this?') do |curiosity|
+  curiosity.content = "
+    widgets.select { |widget| widget.size > 3 }.first
+  "
+  curiosity.user = user
+  curiosity.category = programming_category
+  curiosity.truthful = true
+  curiosity.published_at = Date.current
+  curiosity.extra_comment = '
+  Yes, we can use detect
+  detect makes things a little shorter:
+  widgets.detect { |widget| widget.size > 3 }
+  '
 end
