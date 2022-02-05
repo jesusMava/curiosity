@@ -36,7 +36,11 @@ class CuriosityCard < ApplicationRecord
     update(published_at: nil)
   end
 
+  def statement_exists?(user)
+    statements.exists?(user_id: user)
+  end
+
   def selected_by?(user)
-    statements.where(user_id: user)&.first&.is_real
+    statements.find_by(user_id: user).is_real
   end
 end
