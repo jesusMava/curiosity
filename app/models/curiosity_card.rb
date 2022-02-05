@@ -35,4 +35,8 @@ class CuriosityCard < ApplicationRecord
   def unpublish!
     update(published_at: nil)
   end
+
+  def selected_by?(user)
+    statements.where(user_id: user)&.first&.is_real
+  end
 end
