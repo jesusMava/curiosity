@@ -35,4 +35,12 @@ class CuriosityCard < ApplicationRecord
   def unpublish!
     update(published_at: nil)
   end
+
+  def statement_exists?(user)
+    statements.exists?(user: user)
+  end
+
+  def selected_by?(user)
+    statements.find_by(user: user).is_real
+  end
 end

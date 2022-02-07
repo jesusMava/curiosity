@@ -47,23 +47,13 @@
                     </span>
                   <% end %>
                 <% else %>
-                  <%= link_to curiosity_card_statement_path(curiosity, is_real: true),
-                    class: 'level-item', data: { 'turbo-method' => :update } do %>
-                    <span class="icon is-small has-text-centered icon_size">
-                      <i aria-hidden="true" class="fas fa-check fa-lg"> Real</i>
-                    </span>
-                  <% end %>
-                  <%= link_to curiosity_card_statement_path(curiosity, is_real: false),
-                    class: 'level-item', data: { 'turbo-method' => :update } do %>
-                    <span class="icon has-text-centered">
-                      <i aria-hidden="true" class="fas fa-times fa-lg"> Fake</i>
-                    </span>
-                  <% end %>
-                  <%= link_to curiosity_card_path(curiosity), class: 'level-item' do %>
-                    <span class="icon is-small has-text-centered">
-                      <i aria-hidden="true" class="fas fa-comment fa-lg"> Comments</i>
-                    </span>
-                  <% end %>
+                  <%= button_to 'Real', curiosity_card_statement_path(curiosity, is_real: true),
+                    class: "button #{real_option_selected(curiosity, current_user)}",
+                    method: :patch, data: { turbo: 'false' } %>
+                  <%= button_to ' Fake', curiosity_card_statement_path(curiosity, is_real: false),
+                    class: "button #{fake_option_selected(curiosity, current_user)}",
+                    method: :patch, data: { turbo: 'false' } %>
+                  <%= link_to 'Comments', curiosity_card_path(curiosity), class: 'button' %>
                 <% end %>
               </nav>
             </div>

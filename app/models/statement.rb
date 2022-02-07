@@ -10,8 +10,7 @@ class Statement < ApplicationRecord
                                    message: 'is_real should be true or false' }
 
   def self.upsert(**args)
-    find_or_initialize_by(user: args[:user], curiosity_card: args[:curiosity_card]) do |statement|
-      statement.is_real = args[:is_real]
-    end.save
+    statement = find_or_initialize_by(user: args[:user], curiosity_card: args[:curiosity_card])
+    statement.update(is_real: args[:is_real])
   end
 end
