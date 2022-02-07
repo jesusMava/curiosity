@@ -1,4 +1,12 @@
-<div class="row colums is-mobile">
+<div class="colums is-mobile">
+  <div class='column is-6'>
+    <%= form_with url: root_path, method: :get do |form| %>
+      <%= form.label :query, "Search for:", class: 'label' %>
+      <%= form.text_field :query, class: 'input' %>
+      <%= form.submit "Search",  class: 'button' %>
+    <% end %>
+  </div>
+
   <div class="column is-2 is-offset-10">
     <%= link_to 'Add New Curiosity',
       new_curiosity_card_path, class: 'button is-info mb-2 is-outlined' %>

@@ -24,6 +24,8 @@ class CuriosityCard < ApplicationRecord
       where(category: category).order('RANDOM()').take(5)
   }
 
+  scope :search, ->(text = nil) { text.nil? ? all : where('title LIKE ?', "%#{text}%") }
+
   def published?
     published_at.present?
   end

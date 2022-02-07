@@ -5,7 +5,7 @@ class CuriosityCardsController < ApplicationController
   before_action :set_curiosity, only: %i[show edit update destroy]
 
   def index
-    @curiosities = policy_scope(CuriosityCard)
+    @curiosities = policy_scope(CuriosityCard).search(params[:query])
   end
 
   def show; end
