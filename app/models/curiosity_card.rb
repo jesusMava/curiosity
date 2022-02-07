@@ -37,10 +37,10 @@ class CuriosityCard < ApplicationRecord
   end
 
   def statement_exists?(user)
-    statements.exists?(user_id: user)
+    statements.exists?(user: user)
   end
 
   def selected_by?(user)
-    statements.find_by(user_id: user).is_real
+    statements.find_by(user: user).is_real
   end
 end
