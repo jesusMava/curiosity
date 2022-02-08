@@ -4,7 +4,7 @@ class CuriosityCardPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user&.admin?
-        scope.all
+        scope.all.order(published_at: :desc)
       else
         scope.published
       end
