@@ -5,7 +5,7 @@ class GamesController < ApplicationController
 
   def index
     authorize(Game)
-    @game = Game.top10
+    @games = Game.top(10)
   end
 
   def show

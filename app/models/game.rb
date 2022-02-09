@@ -7,7 +7,7 @@ class Game < ApplicationRecord
 
   after_create_commit :setup
 
-  scope :top10, -> { select(:total_score, :user_id).distinct.order('total_score DESC').limit(10) }
+  scope :top, ->(limit) { select(:total_score, :user_id).distinct.order('total_score DESC').limit(limit) }
 
   def update_total_score
     update(total_score: questions.sum(:score))

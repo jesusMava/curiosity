@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @game.each do |game| %>
+        <% @games.each do |game| %>
         <tr class='has-text-centered has-text-weight-semibold'>
           <td><%= game.user.email %></td>
           <td class='has-text-link'><%= game.total_score %></td>
