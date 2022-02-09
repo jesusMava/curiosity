@@ -21,13 +21,14 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
+        <%= link_to "Play", games_path, class: 'button is-link is-outlined' %>
         <% if user_signed_in? %>
           <%= button_to 'Log out', destroy_user_session_path,
                     method: :delete, class: 'button is-light',
                     data: { turbo: 'false' } %>
         <% else %>
-          <%= link_to "Registrate", new_user_registration_path, class: 'button is-primary' %>
-          <%= link_to 'Iniciar sesión', new_user_session_path, class: 'button is-info is-outlined' %>
+          <%= link_to 'Log in', new_user_session_path, class: 'button is-info is-outlined' %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'button is-primary is-outlined' %>
         <% end %>
       </div>
     </div>

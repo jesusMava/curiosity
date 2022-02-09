@@ -16,6 +16,18 @@
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "notification is-#{message_type}") %>
       <% end %>
+      <% unless user_signed_in? %>
+        <section class="block hero is-info">
+          <div class="hero-body">
+            <p class="title">
+              "Be curious. Read widely. Try new things. I think a lot of what people call intelligence boils down to curiosity."
+            </p>
+            <p class="subtitle">
+              - Aaron Swartz
+            </p>
+          </div>
+        </section>
+      <% end %>
       <%= yield %>
     </div>
   </body>
