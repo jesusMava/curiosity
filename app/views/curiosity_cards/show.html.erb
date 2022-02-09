@@ -7,8 +7,20 @@
     <% @curiosity.images.each do |image| %>
       <%= image_tag(url_for(image), width: "650", height: "450") %>
     <% end %>
-    <%= @curiosity.content %>
-    </br>
+    <div class='block'>
+      <%= @curiosity.content %>
+    </div>
+    <div class='buttons is-pulled-right'>
+      <%= button_to 'Real', curiosity_card_statement_path(@curiosity, is_real: true),
+        class: "button is-active #{real_option_selected(@curiosity, current_user)}",
+        method: :patch, data: { turbo: 'false' } %>
+      <%= button_to ' Fake', curiosity_card_statement_path(@curiosity, is_real: false),
+        class: "button is-active #{fake_option_selected(@curiosity, current_user)}",
+        method: :patch, data: { turbo: 'false' } %>
+      <%= button_to 'Delete vote', curiosity_card_statement_path(@curiosity),
+        class: "button is-active", method: :delete %>
+    </div>
+
     <% if user_signed_in? %>
       <div class="buttons is-pulled-right">
         <% if policy(@curiosity).edit? %>

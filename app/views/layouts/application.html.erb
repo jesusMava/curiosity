@@ -16,7 +16,7 @@
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "notification is-#{message_type}") %>
       <% end %>
-      <% if !user_signed_in? %>
+      <% unless user_signed_in? %>
         <section class="block hero is-info">
           <div class="hero-body">
             <p class="title">
