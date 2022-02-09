@@ -1,3 +1,28 @@
-<h1 class="title">Curiosity Game</h1>
+<div class='block'>
+  <h1 class="title">Curiosity Game</h1>
 
-<%= link_to "Start a new game", new_game_path, class: 'button is-primary is-outlined' %>
+  <%= link_to "Start a new game", new_game_path, class: 'button is-primary is-outlined' %>
+</div>
+
+<div class="columns" id="app">
+  <div class='column is-three-fifths'>
+    <h2 class='title'> Top 10 players </h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @game.each do |game| %>
+        <tr class='has-text-centered has-text-weight-semibold'>
+          <td><%= game.user.email %></td>
+          <td class='has-text-link'><%= game.total_score %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
