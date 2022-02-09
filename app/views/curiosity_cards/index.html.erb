@@ -61,6 +61,8 @@
                   <%= button_to ' Fake', curiosity_card_statement_path(curiosity, is_real: false),
                     class: "button #{fake_option_selected(curiosity, current_user)}",
                     method: :patch, data: { turbo: 'false' } %>
+                  <%= button_to 'Delete vote', curiosity_card_statement_path(curiosity),
+                    class: "button", method: :delete %>
                   <%= link_to 'Comments', curiosity_card_path(curiosity), class: 'button' %>
                 <% end %>
               </nav>
