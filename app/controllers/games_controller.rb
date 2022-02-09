@@ -5,6 +5,7 @@ class GamesController < ApplicationController
 
   def index
     authorize(Game)
+    @games = Game.top(10)
   end
 
   def show
