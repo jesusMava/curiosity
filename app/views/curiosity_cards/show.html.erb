@@ -10,6 +10,14 @@
     <div class='block'>
       <%= @curiosity.content %>
     </div>
+
+    <div class="control">
+      <div class="tags has-addons">
+        <span class="tag is-primary"><%= @curiosity.total_real_statements %></span>
+        <span class="tag is-danger"><%= @curiosity.total_fake_statements %></span>
+      </div>
+    </div>
+
     <div class='buttons is-pulled-right'>
       <%= button_to 'Real', curiosity_card_statement_path(@curiosity, is_real: true),
         class: "button is-active #{real_option_selected(@curiosity, current_user)}",

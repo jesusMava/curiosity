@@ -45,4 +45,12 @@ class CuriosityCard < ApplicationRecord
   def selected_by?(user)
     statements.find_by(user: user).is_real
   end
+
+  def total_real_statements
+    statements.where(is_real: true).count
+  end
+
+  def total_fake_statements
+    statements.where(is_real: false).count
+  end
 end
