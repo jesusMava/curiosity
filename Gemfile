@@ -11,6 +11,7 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'image_processing', '>= 1.2'
 gem 'jbuilder'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
