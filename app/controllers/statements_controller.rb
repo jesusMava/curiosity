@@ -18,9 +18,11 @@ class StatementsController < ApplicationController
 
   def destroy
     statement = Statement.find_by(user: current_user, curiosity_card: @curiosity_card)
-    statement.destroy
-
-    redirect_back(fallback_location: root_path)
+    if statement&.destroy
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to root_path, notice: 'You need to select a reaction first.'
+    end
   end
 
   private
