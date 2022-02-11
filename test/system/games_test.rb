@@ -29,6 +29,7 @@ class GamesTest < ApplicationSystemTestCase
 
   test 'should create game' do
     sign_in user
+    create :category
 
     visit games_path
     click_on 'Start a new game'
